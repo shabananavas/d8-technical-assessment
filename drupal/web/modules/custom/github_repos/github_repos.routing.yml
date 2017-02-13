@@ -1,0 +1,15 @@
+github_repos_settings:
+  path: '/admin/config/github-repos/settings'
+  defaults:
+    _form: '\Drupal\github_repos\Form\GithubReposSettingsForm'
+    _title: 'Github Repos Settings'
+  requirements:
+    _permission: 'administer site configuration'
+
+github_repos_search:
+  path: '/admin/content/github-repos/search'
+  defaults:
+    _form: '\Drupal\github_repos\Form\GithubReposSearchForm'
+    _title: 'Github Repository Search Form'
+  requirements:
+    _permission: 'access content'

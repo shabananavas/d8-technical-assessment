@@ -1,0 +1,31 @@
+{#
+  /**
+   * @file
+   * Default theme implementation for the Github Repositories.
+
+    * - user_name:
+    * - user_url:
+    * - repos: A list of repositories, each with the following properties, plus, many more:
+    *   - repo_name
+    *   - html_url
+    *   - git_url
+    *   - stargazers_count
+  */
+#}
+
+<div class="github-repos-results">
+  <div class="user-url">
+    <h4>Github Repositories for User: <a href="{{ user_url }}">{{ user_name }}</a></h4>
+  </div>
+  <div class="user-repositories">
+    <ul>
+    {% for repo in repos %}
+      <li>
+        <div class="repository-info repo-name">Repo Name: <a href="{{ repo.html_url }}">{{ repo.name }}</a></div>
+        <div class="repository-info repo-url">Git URL: <a href="{{ repo.git_url }}">{{ repo.git_url }}</a></div>
+        <div class="repository-info stargazers-count">Stargazers Count: {{ repo.stargazers_count }}</div>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+</div>

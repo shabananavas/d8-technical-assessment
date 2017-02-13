@@ -1,0 +1,5 @@
+name: Github Repos
+type: module
+description: A module to fetch all the public repositories from Github.
+package: Web services
+core: 8.x
