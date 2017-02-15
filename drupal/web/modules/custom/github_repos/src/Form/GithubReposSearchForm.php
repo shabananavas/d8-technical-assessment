@@ -66,7 +66,8 @@ class GithubReposSearchForm extends FormBase {
         $content = $this->githubRepoService->getUserRepos($form_state->getValue('username'), $config->get('api'));
         if ($content) {
           // Another call to our repo service to display the themed repos.
-          return $this->githubRepoService->display_user_repositories($content);
+          $form += $this->githubRepoService->display_user_repositories($content);
+          return $form;
         }
         // Else, if an error has occurred, display that.
         else {
