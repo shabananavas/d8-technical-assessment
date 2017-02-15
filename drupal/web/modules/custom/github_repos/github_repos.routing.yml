@@ -13,3 +13,11 @@ github_repos_search:
     _title: 'Github Repository Search Form'
   requirements:
     _permission: 'access content'
+
+github_repos_fetch_repos:
+  path: '/githubrepo/{username}'
+  defaults:
+    _controller: '\Drupal\github_repos\Controller\GithubReposController::fetch_user_repositories'
+    _title: 'User Repositories'
+  requirements:
+    _permission: 'access content'

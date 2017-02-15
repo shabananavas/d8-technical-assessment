@@ -1,1 +1,4 @@
 # HINT: you'll need to define the service
+services:
+  github_repos.custom_client:
+    class: Drupal\github_repos\GithubReposService
