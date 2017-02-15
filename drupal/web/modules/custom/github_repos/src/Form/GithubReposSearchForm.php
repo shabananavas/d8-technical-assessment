@@ -5,11 +5,20 @@ namespace Drupal\github_repos\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\github_repos\Controller\GithubReposController;
+use Drupal\github_repos\GithubRepoService;
 
 /**
  * A form class which collects and fetches the Github repositories of a user.
  */
 class GithubReposSearchForm extends FormBase {
+
+  /**
+   * An instance of GithubRepoService
+   */
+  protected $githubRepoService;
+
+  # HINT: You'll need a constructor
+
   /**
    * {@inheritdoc}
    */
@@ -36,8 +45,12 @@ class GithubReposSearchForm extends FormBase {
     // Display the results nicely once the form submits in the same page.
     if ($form_state->getValue('username')) {
       // Fetch the content from our controller class.
-      $repos_controller_class = new GithubReposController;
-      $content = $repos_controller_class->fetch_user_repositories($form_state->getValue('username'));
+
+      // REMOVED $repos_controller_class = new GithubReposController;
+      // TODO: Instead of newing up the GithubReposController here, rather use the 
+      // GithubRepoService. But also don't new up the service, use dependency injection to 
+      // call the service here
+      $content = $this->githubRepoService->getUserRepos($form_state->getValue('username'), $api_url);
 
       // If we have results, display the themed results.
       if ($content) {

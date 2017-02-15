@@ -12,6 +12,15 @@ use GuzzleHttp\Exception\RequestException;
 class GithubReposController extends ControllerBase {
 
   /**
+   * An injected instance of the Drupal\github_repos\GithubRepoService
+   */
+  protected $githubRepoService;
+
+  /**
+   * HINT: you'll need a constructor
+   */
+
+  /**
    * Fetches and returns the Github repositories for a user.
    *
    * @param  string $username
@@ -22,12 +31,9 @@ class GithubReposController extends ControllerBase {
    */
   public function fetch_user_repositories($username) {
     $config = $this->config('github_repos.settings');
-    $client = \Drupal::httpClient();
 
     try {
-      $response = $client->get($config->get('api') . $username . '/repos');
-      $content = json_decode($response->getBody()->getContents());
-      return $content;
+      return $this->githubRepoService->getUserRepos($username, $config->get('api'));
     }
     catch (RequestException $e) {
       watchdog_exception('github_repos', $e->getMessage());
