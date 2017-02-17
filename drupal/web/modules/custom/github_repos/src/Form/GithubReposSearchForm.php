@@ -67,14 +67,12 @@ class GithubReposSearchForm extends FormBase {
         if ($content) {
           // Another call to our repo service to display the themed repos.
           $form += $this->githubRepoService->display_user_repositories($content);
-          return $form;
         }
         // Else, if an error has occurred, display that.
         else {
           $form['repository_results'] = array(
             '#markup' => t('An error has occurred. Please check back later.')
           );
-          return $form;
         }
       }
       catch (RequestException $e) {
